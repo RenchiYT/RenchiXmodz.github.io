@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RenchiXmodz - Free Fire Proxy</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e94560;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #e94560;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #fff;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #e94560;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0f3460, #1a1a2e);
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #e94560;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #bbb;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #e94560;
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #d63851;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 60px 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #1a1a2e;
+      padding: 30px 25px;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid #2a2a4a;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: #e94560;
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 40px;
+      color: #e94560;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      background: #111;
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    .how-it-works h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .how-it-works h2 span {
+      color: #e94560;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step {
+      background: #1a1a2e;
+      padding: 30px 20px;
+      border-radius: 15px;
+      border: 1px solid #2a2a4a;
+    }
+
+    .step .num {
+      width: 50px;
+      height: 50px;
+      background: #e94560;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 auto 15px;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: #1a1a2e;
+      border: 1px solid #e94560;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 25px 30px;
+      text-align: center;
+    }
+
+    .disclaimer i {
+      color: #e94560;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .disclaimer h3 {
+      margin-bottom: 10px;
+      color: #e94560;
+    }
+
+    .disclaimer p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid #222;
+      color: #666;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #e94560;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      nav a {
+        margin: 0 10px;
+        font-size: 13px;
+      }
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Renchi<span>Xmodz</span></div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#how">How It Works</a>
+      <a href="#disclaimer">Disclaimer</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>🚀 Free Fire <span>Proxy Server</span></h1>
+    <p>Route your game traffic through our high-speed proxy servers. Reduce ping, bypass region locks, and enjoy a smoother Free Fire experience. No root required. No complicated setup.</p>
+    <a href="#" class="btn">Get Started Now</a>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="card">
+      <i class="fas fa-globe"></i>
+      <h3>Multiple Regions</h3>
+      <p>Servers in US, Europe, Singapore, and more. Pick the closest one for lowest ping.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-mobile-alt"></i>
+      <h3>No Root Required</h3>
+      <p>Works on any Android device. Just install Free Fire, paste a config file, and play.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-bolt"></i>
+      <h3>Reduced Lag</h3>
+      <p>Optimized routing reduces packet loss and lowers ping for smoother gameplay.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-lock-open"></i>
+      <h3>Region Unlock</h3>
+      <p>Access region-locked events, items, and servers that aren't available in your country.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Safe & Secure</h3>
+      <p>Encrypted tunnel between your device and our servers. Your data stays private.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-phone-alt"></i>
+      <h3>Works on All Phones</h3>
+      <p>Compatible with both Free Fire and Free Fire Max on any Android device.</p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how">
+    <h2>📲 How It <span>Works</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Install & Prepare</h3>
+        <p>Install Free Fire + MT Manager. Create a guest account.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Paste Config</h3>
+        <p>Download our config file and paste it into the game folder using MT Manager.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Play</h3>
+        <p>Enter your UID on our dashboard, activate your session, and enjoy smoother gameplay.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer" id="disclaimer">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h3>⚠️ Disclaimer</h3>
+    <p>This proxy tool is for <strong>educational and testing purposes only</strong>. Use at your own risk. Always use a <strong>secondary guest account</strong> — never your main Free Fire account. Garena's Terms of Service may prohibit the use of third-party proxy tools.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 <a href="#">RenchiXmodz</a> — Free Fire Proxy Server. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
