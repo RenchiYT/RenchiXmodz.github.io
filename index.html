@@ -29,7 +29,7 @@
     }
     .logo { font-size: 22px; font-weight: 800; color: #e94560; }
     .logo span { color: #fff; }
-    nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    nav { display: flex; gap: 8px; flex-wrap: wrap; }
     nav a {
       color: #ccc;
       text-decoration: none;
@@ -53,7 +53,7 @@
       display: inline-block;
       background: #e94560;
       color: #fff;
-      padding: 12px 30px;
+      padding: 12px 28px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 700;
@@ -62,21 +62,21 @@
       border: none;
       cursor: pointer;
       -webkit-appearance: none;
+      text-align: center;
     }
     .btn:hover, .btn:active { background: #d63851; transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #e94560;
-      color: #e94560;
-    }
+    .btn-outline { background: transparent; border: 2px solid #e94560; color: #e94560; }
     .btn-outline:hover, .btn-outline:active { background: #e94560; color: #fff; }
+    .btn-discord { background: #5865F2; }
+    .btn-discord:hover, .btn-discord:active { background: #4752c4; }
     .btn-green { background: #2ecc71; }
     .btn-green:hover, .btn-green:active { background: #27ae60; }
     .btn-danger { background: #e74c3c; }
     .btn-danger:hover, .btn-danger:active { background: #c0392b; }
-    .btn-block { width: 100%; text-align: center; }
+    .btn-block { width: 100%; }
     .btn-sm { padding: 8px 18px; font-size: 12px; }
     .btn+.btn { margin-top: 8px; }
+    .btn-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 
     /* Section titles */
     .section-title {
@@ -90,7 +90,7 @@
       text-align: center;
       color: #999;
       font-size: 14px;
-      padding: 0 20px 30px;
+      padding: 0 20px 25px;
     }
 
     /* Features */
@@ -177,11 +177,7 @@
     .token-display.show { display: block; }
 
     /* Server List */
-    .server-list {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 0 20px 40px;
-    }
+    .server-list { max-width: 500px; margin: 0 auto; padding: 0 20px 40px; }
     .server-item {
       display: flex;
       justify-content: space-between;
@@ -197,7 +193,7 @@
     .server-item .online { color: #2ecc71; font-size: 11px; }
     .server-item .ip { color: #555; font-family: monospace; font-size: 11px; }
 
-    /* Config Download */
+    /* Config */
     .config-section {
       padding: 0 20px 40px;
       max-width: 500px;
@@ -213,7 +209,7 @@
     .config-box i { font-size: 50px; color: #e94560; margin-bottom: 10px; }
     .config-box p { color: #999; font-size: 13px; margin-bottom: 15px; }
 
-    /* How it works */
+    /* Steps */
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -262,11 +258,74 @@
     }
     footer a { color: #e94560; text-decoration: none; }
 
-    /* Mobile tweaks */
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #1a1a2e;
+      border: 1px solid #2a2a4a;
+      border-radius: 20px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal .close {
+      position: absolute;
+      top: 12px; right: 18px;
+      color: #666;
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .modal .close:hover { color: #e94560; }
+    .modal h2 { text-align: center; margin-bottom: 5px; font-size: 22px; }
+    .modal h2 span { color: #e94560; }
+    .modal p { text-align: center; color: #999; font-size: 13px; margin-bottom: 20px; }
+    .divider {
+      display: flex; align-items: center; margin: 15px 0; color: #666; font-size: 13px;
+    }
+    .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
+    .divider span { padding: 0 10px; }
+    .modal .switch-link {
+      text-align: center; margin-top: 15px; font-size: 13px; color: #666;
+    }
+    .modal .switch-link a { color: #e94560; text-decoration: none; cursor: pointer; }
+
+    /* Logged-in state badge */
+    .user-badge {
+      display: none;
+      background: #1a2d1a;
+      border: 1px solid #2ecc71;
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 12px;
+      color: #2ecc71;
+      align-items: center;
+      gap: 6px;
+    }
+    .user-badge.show { display: inline-flex; }
+    .user-badge i { color: #2ecc71; }
+
     @media (max-width: 480px) {
       .hero h1 { font-size: 26px; }
       .dashboard { padding: 18px; }
-      .btn { padding: 14px 24px; }
+      .btn-group { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -279,6 +338,9 @@
     <a href="#dash">Dashboard</a>
     <a href="#config">Config</a>
     <a href="#how">How</a>
+    <!-- Login / User badge -->
+    <a href="#" id="navLoginBtn" onclick="openModal('login')">Login</a>
+    <span id="userBadge" class="user-badge"><i class="fas fa-check-circle"></i> <span id="userNameDisplay">User</span></span>
   </nav>
 </header>
 
@@ -286,8 +348,14 @@
 <section class="hero">
   <h1>🚀 Free Fire <span>Proxy Server</span></h1>
   <p>Route your game traffic through our high-speed proxy servers. Reduce ping, bypass region locks, and enjoy a smoother Free Fire experience. No root required. No complicated setup.</p>
-  <a href="#dash" class="btn">Open Dashboard</a>
-  <a href="#config" class="btn btn-outline" style="margin-left:8px;">Download .45b</a>
+  <div class="btn-group">
+    <a href="#" class="btn" onclick="openModal('login')">Sign In</a>
+    <a href="#" class="btn btn-outline" onclick="openModal('register')">Register</a>
+    <a href="#" class="btn btn-discord" onclick="discordLogin()"><i class="fab fa-discord"></i> Discord</a>
+  </div>
+  <div style="margin-top:15px;">
+    <a href="#dash" style="color:#999;font-size:13px;text-decoration:none;">Skip to Dashboard →</a>
+  </div>
 </section>
 
 <!-- FEATURES -->
@@ -331,7 +399,6 @@
     <div id="tokenDisplay" class="token-display"></div>
   </div>
 
-  <!-- Server Status -->
   <h3 style="text-align:center;margin:25px 0 10px;font-size:16px;color:#999;">🌐 Server Status</h3>
   <div class="server-list">
     <div class="server-item"><div><span class="loc">🇸🇬 Singapore</span><br><span class="online">● Online</span></div><div style="text-align:right;"><span class="ping">22ms</span><br><span class="ip">sg.proxy.rx.xyz</span></div></div>
@@ -343,7 +410,7 @@
   </div>
 </div>
 
-<!-- CONFIG DOWNLOAD -->
+<!-- CONFIG -->
 <h2 class="section-title" id="config">📁 Download <span>.45b Config</span></h2>
 <p class="section-sub">Choose region and download for MT Manager</p>
 <div class="config-section">
@@ -387,7 +454,154 @@
   <p>&copy; 2026 <a href="#">RenchiXmodz</a> — Free Fire Proxy. Not affiliated with Garena.</p>
 </footer>
 
+<!-- ===== LOGIN MODAL ===== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle"><span>Sign</span> In</h2>
+    <p id="modalSub">Welcome back to RenchiXmodz</p>
+
+    <!-- Login Form -->
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="input-group">
+        <label><i class="fas fa-envelope"></i> Email or Username</label>
+        <input type="text" id="loginEmail" placeholder="your@email.com" required>
+      </div>
+      <div class="input-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="loginPass" placeholder="Enter password" required>
+      </div>
+      <button type="submit" class="btn btn-block"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" onsubmit="handleRegister(event)" style="display:none;">
+      <div class="input-group">
+        <label><i class="fas fa-user"></i> Username</label>
+        <input type="text" id="regUsername" placeholder="Choose a username" required minlength="3">
+      </div>
+      <div class="input-group">
+        <label><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="regEmail" placeholder="your@email.com" required>
+      </div>
+      <div class="input-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="regPass" placeholder="Min. 6 characters" required minlength="6">
+      </div>
+      <div class="input-group">
+        <label><i class="fas fa-check-circle"></i> Confirm Password</label>
+        <input type="password" id="regConfirm" placeholder="Repeat password" required>
+      </div>
+      <button type="submit" class="btn btn-block"><i class="fas fa-user-plus"></i> Create Account</button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider"><span>OR</span></div>
+
+    <!-- Discord button -->
+    <button class="btn btn-discord btn-block" onclick="discordLogin()"><i class="fab fa-discord"></i> Continue with Discord</button>
+
+    <!-- Switch -->
+    <div class="switch-link" id="switchLink">
+      <span id="switchText">Don't have an account?</span>
+      <a id="switchBtn" onclick="switchModal()">Register</a>
+    </div>
+  </div>
+</div>
+
 <script>
+// ===== MODAL CONTROLS =====
+let modalMode = 'login';
+
+function openModal(mode) {
+  modalMode = mode || 'login';
+  document.getElementById('authModal').classList.add('active');
+  updateModalForm();
+}
+
+function closeModal() {
+  document.getElementById('authModal').classList.remove('active');
+}
+
+function switchModal() {
+  modalMode = modalMode === 'login' ? 'register' : 'login';
+  updateModalForm();
+}
+
+function updateModalForm() {
+  const isLogin = modalMode === 'login';
+  document.getElementById('modalTitle').innerHTML = isLogin ? '<span>Sign</span> In' : '<span>Create</span> Account';
+  document.getElementById('modalSub').textContent = isLogin ? 'Welcome back to RenchiXmodz' : 'Join the RenchiXmodz community';
+  document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = isLogin ? 'none' : 'block';
+  document.getElementById('switchText').textContent = isLogin ? "Don't have an account?" : "Already have an account?";
+  document.getElementById('switchBtn').textContent = isLogin ? 'Register' : 'Sign In';
+}
+
+// Close modal on overlay click
+document.getElementById('authModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ===== AUTH HANDLERS =====
+let loggedInUser = null;
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPass').value;
+
+  if (!email || !pass) { alert('Fill in all fields.'); return; }
+
+  // Simulate login
+  const username = email.split('@')[0];
+  loggedInUser = { username: username, email: email };
+  setLoggedIn(username);
+  closeModal();
+  alert('✅ Signed in as ' + username);
+}
+
+function handleRegister(e) {
+  e.preventDefault();
+  const username = document.getElementById('regUsername').value;
+  const email = document.getElementById('regEmail').value;
+  const pass = document.getElementById('regPass').value;
+  const confirm = document.getElementById('regConfirm').value;
+
+  if (!username || !email || !pass) { alert('Fill in all fields.'); return; }
+  if (pass !== confirm) { alert('Passwords do not match.'); return; }
+  if (pass.length < 6) { alert('Password must be at least 6 characters.'); return; }
+
+  loggedInUser = { username: username, email: email };
+  setLoggedIn(username);
+  closeModal();
+  alert('✅ Account created! Welcome ' + username);
+}
+
+function discordLogin() {
+  closeModal();
+  // Simulate Discord login with a random username
+  const names = ['GamerX', 'ProSlayer', 'HeadshotKing', 'FireMaster', 'NinjaFF', 'ShadowPlay', 'DragonX'];
+  const randomName = names[Math.floor(Math.random() * names.length)] + '#' + Math.floor(Math.random() * 9999);
+  loggedInUser = { username: randomName, email: randomName + '@discord.user' };
+  setLoggedIn(randomName);
+  alert('✅ Signed in with Discord as ' + randomName);
+}
+
+function setLoggedIn(username) {
+  document.getElementById('navLoginBtn').style.display = 'none';
+  const badge = document.getElementById('userBadge');
+  badge.classList.add('show');
+  document.getElementById('userNameDisplay').textContent = username;
+}
+
+function logout() {
+  loggedInUser = null;
+  document.getElementById('navLoginBtn').style.display = 'inline';
+  document.getElementById('userBadge').classList.remove('show');
+}
+
+// ===== DASHBOARD =====
 function activateProxy() {
   const uid = document.getElementById('uidInput').value.trim();
   const server = document.getElementById('serverSelect').value;
@@ -438,6 +652,7 @@ function deactivateProxy() {
   }, 800);
 }
 
+// ===== CONFIG DOWNLOAD =====
 function downloadConfig() {
   const region = document.getElementById('configRegion').value;
   if (!region) { alert('Select a region first.'); return; }
@@ -486,11 +701,10 @@ function downloadAll() {
   URL.revokeObjectURL(blob);
 }
 
-// Enter key support
+// Enter key
 document.getElementById('uidInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') activateProxy();
 });
 </script>
-
 </body>
 </html>
